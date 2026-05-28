@@ -1,4 +1,7 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 export default defineConfig({
   testDir: './tests',
@@ -8,7 +11,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    baseURL: 'https://www.saucedemo.com',
+    baseURL: process.env.BASE_URL || 'https://www.saucedemo.com',
     trace: 'on-first-retry',
   },
   projects: [
@@ -16,13 +19,5 @@ export default defineConfig({
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
   ],
-});
+})
