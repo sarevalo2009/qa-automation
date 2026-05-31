@@ -12,9 +12,10 @@ export default defineConfig({
   reporter: 'html',
   use: {
     baseURL: process.env.BASE_URL || 'https://www.saucedemo.com',
-    screenshot: 'only-on-failure',   // screenshot automático si falla
-    video: 'retain-on-failure',      // video automático si falla
-    trace: 'retain-on-failure',      // trace completo si falla
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    trace: 'retain-on-failure',
+    slowMo: 5000, // 1 segundo entre cada acción
   },
   projects: [
     {
