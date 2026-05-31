@@ -29,4 +29,16 @@ test.describe('Authentication', () => {
     await loginPage.expectError('Username is required')
   })
 
+  test('should block locked user from login', async ({ page }) => {
+    // ARRANGE
+    const loginPage = new LoginPage(page)
+    await loginPage.goto()
+
+    // ACT
+    await loginPage.login('locked_out_user', 'secret_sauce')
+
+    // ASSERT
+    await loginPage.expectError('Sorry, this user has been locked out')
+  })
+
 })

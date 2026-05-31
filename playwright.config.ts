@@ -7,7 +7,7 @@ export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
+  retries: 1,            // reintenta 1 vez si falla
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
@@ -15,7 +15,7 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     trace: 'retain-on-failure',
-    slowMo: 5000, // 1 segundo entre cada acción
+    slowMo: 6000,
   },
   projects: [
     {
